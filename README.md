@@ -61,9 +61,9 @@ content
 1. errorViewHandler : loadingViewHandler와 같은 맥락으로 API호출시 발생하는 Error에 대한 사용자에 대한 알림이다. error 값이 modifier에 전달될 경우 Error에 따른 message가 노출이 되고 재시도 버튼이 나타난다. 
 
 <p align="center">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851321-7c9c414c-9c36-4611-951b-8f0e16f0ec97.png" width = "300" height = "500">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851322-0670624d-38ff-48d3-8889-f12f9d9c2c36.png" width = "300" height = "500">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851323-6530224a-e5a0-4174-89f7-690804f5a8e2.png" width = "300" height = "500"></p>
+	<img src = "https://user-images.githubusercontent.com/50567986/219851321-7c9c414c-9c36-4611-951b-8f0e16f0ec97.png" width = "200" height = "400">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851322-0670624d-38ff-48d3-8889-f12f9d9c2c36.png" width = "200" height = "400">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851323-6530224a-e5a0-4174-89f7-690804f5a8e2.png" width = "200" height = "400"></p>
 
 	
 ```swift
@@ -141,9 +141,9 @@ SearchView는 searchable modifier를 통해 TextField가 Navigation을 가리는
 
 
 <p align="center">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851397-01327ca2-2ab5-4297-99cb-8dc3dbfb9fb6.png" width = "300" height = "500">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851401-f9a59069-43a8-42ab-a3e3-c1d72b59ac4e.png" width = "300" height = "500">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851402-33d623eb-4aa4-4b20-b724-95dc7a594e31.png" width = "300" height = "500"></p>
+	<img src = "https://user-images.githubusercontent.com/50567986/219851397-01327ca2-2ab5-4297-99cb-8dc3dbfb9fb6.png" width = "200" height = "400">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851401-f9a59069-43a8-42ab-a3e3-c1d72b59ac4e.png" width = "200" height = "400">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851402-33d623eb-4aa4-4b20-b724-95dc7a594e31.png" width = "200" height = "400"></p>
 
 
 ### BookmarkView
@@ -160,8 +160,8 @@ UserDefaultsStorage에서 북마크 추가, 제거, 조회, 북마크여부 등�
 2. bookmarkListView : 조회한 북마크를 리스트 형태로 출력하고 가장 우측에는 북마크를 제거할 수 있는 하트 버튼이 있다. 하트 버튼을 눌러서 북마크 리스트에서 곧바로 제거할 수 있고, SearchView에서 사용하는 MovieInfoRow를 공통 컴포넌트로 분리하여 BookmarkView에서도 사용하게끔 구현하였다.
 
 <p align="center">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851449-4a32390d-3d81-492e-9999-37f93f3133f1.png" width = "300" height = "500">
-	<img src = "https://user-images.githubusercontent.com/50567986/219851450-3bcc2f38-b045-4756-9caf-696fdccab41d.png" width = "300" height = "500"></p>
+	<img src = "https://user-images.githubusercontent.com/50567986/219851449-4a32390d-3d81-492e-9999-37f93f3133f1.png" width = "200" height = "400">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851450-3bcc2f38-b045-4756-9caf-696fdccab41d.png" width = "200" height = "400"></p>
 
 
 

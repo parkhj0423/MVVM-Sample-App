@@ -1,5 +1,4 @@
-# MVVM-Sample-App
-iOS15, CleanArchitecture, MVVM, Swift-Concurrency Without Library Using Movie API
+# Clean Architecture, MVVM, Concurrency Sample App
 
 [API Documentation - YTS YIFY](https://yts.mx/api#list_movies)
 
@@ -8,8 +7,7 @@ iOS15, CleanArchitecture, MVVM, Swift-Concurrency Without Library Using Movie AP
 `iOS15`, `SwiftUI`, `Combine`, `Async/Await`, `MVVM`, `Clean Architecture`
 
 ## 프로젝트 구조
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/739fe66e-faf4-44f9-8d7e-7a31ffa0f771/Untitled.png)
+<p align="center"><img src = "https://user-images.githubusercontent.com/50567986/219851073-7bf933b7-ca91-413b-952b-f8b0b3ea6e6c.png" width = "300" height = "400"></p>
 
 MVVM과 Clean Architecture을 사용한 구조를 계획했기 때문에,  `DataLayer`, `DomainLayer`, `PresentaionLayer` 총 세개의 `Layer`로 나눴다. 각 레이어는 아키텍쳐의 규칙에 맞는 역할을 하는 파일들을 넣었고, 이외에도 각 화면에 필요한 의존성을 주입시킬 AppDIContainer와, 화면 전반에서 사용하게될 기능들이 있는 CommonUtils 폴더와, 공통 컴포넌트와 View에대한 Util을 가지고있는 UiUtils 폴더로 구성된 Utils 폴더가 추가적으로 존재한다.
 
@@ -37,13 +35,13 @@ switch response.statusCode {
 
 실제로 호출할 시 info.plist에 작성한 BASE_URL에 추가적인 URL 정보와 파라미터 유무, HTTP method 유형을 작성해 네트워크 호출을 시도한다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3698c85b-94fa-4470-8cb8-763e8109caaa/Untitled.png)
+![Untitled 1](https://user-images.githubusercontent.com/50567986/219851314-9950a3f8-41c8-4954-8384-9b12d68fed6f.png)
 
 ## 화면 구조
 
 화면구조는 하단 탭바가 총 세가지의 뷰를 가지고 있는 구조이다. 탭바의 상태를 관리하기 위해 ViewRouter를 생성하여 사용한다.
 
-루트뷰(iOS_questApp) - MainView - BottomTabView - 3가지 탭 화면(MovieListView, SearchView, BookmarkView) 로 구성되어있다.
+RootView - MainView - BottomTabView - 3가지 탭 화면(MovieListView, SearchView, BookmarkView) 로 구성되어있다.
 
 ### Common
 
@@ -62,12 +60,12 @@ content
 
 1. errorViewHandler : loadingViewHandler와 같은 맥락으로 API호출시 발생하는 Error에 대한 사용자에 대한 알림이다. error 값이 modifier에 전달될 경우 Error에 따른 message가 노출이 되고 재시도 버튼이 나타난다. 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82749818-b20f-4930-8295-134ea8c07dfb/Untitled.png)
+<p align="center">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851321-7c9c414c-9c36-4611-951b-8f0e16f0ec97.png" width = "300" height = "500">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851322-0670624d-38ff-48d3-8889-f12f9d9c2c36.png" width = "300" height = "500">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851323-6530224a-e5a0-4174-89f7-690804f5a8e2.png" width = "300" height = "500"></p>
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8eaf8a8a-20bc-4fac-b42c-018c96908712/Untitled.png)
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c11cee8d-46bc-4479-9b49-8d7dec63730a/Untitled.png)
-
+	
 ```swift
 content
 	.errorViewHandler(error: viewModel.error) {
@@ -84,22 +82,33 @@ error 값과, 재시도 버튼을 눌렀을때의 행동을 가진 델리게이�
 
 선택된 탭은 아이콘 아래 빨간색 점이 나타나 현재 선택된 탭을 알리는 역할을 한다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2e715098-4cb6-48d2-9d99-a8a8d81e5871/Untitled.png)
+<p align="center">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851335-ddabe3f6-cef9-4c14-8528-da38fd510caa.png" width = "600" height = "150">
+</p>
+
 
 ### MovieListView
 
 MovieListView는 API호출을 통한 `MovieEntity`들로 이루어져있다. RefreshableScrollView안에 구현된 MovieListView는 기본적으로 `Pull to refresh`가 가능하다. MovieItem은 최적화와 Paging처리를 위해 LazyVStack안에 구현 되었다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/122b8fc7-471b-484f-8b34-e73e3341c786/Untitled.png)
+
+<p align="center">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851359-e682bc42-773d-45bc-89ae-1c4f2748c948.png" width = "300" height = "500">
+</p>
+
 
 ### MovieItemView
 
 MovieEntity를 파라미터로 갖는 MovieItemView는 다음의 컴포넌트들로 구성되어있다.
 
 1. profileView : 프로필이미지, 제목이 포함되어 있다.
-2. 메인 커버이미지 : 가로 너비를 꽉 채우고있는 이 커버이미지에 인스타그램 좋아요 애니메이션을 적용하여 **연속으로 2번 탭**할 경우 북마크에 추가된 상태가 아니라면 이미지 가운데에 하트가 1초간 나타났다 사라지며 북마크에 추가된다. 이기능도 ViewModifier를 사용하여 복잡한 코드를 노출시키지 않았고, 북마크 여부 파라미터와 애니메이션 동작을 위한 로컬변수를 바인딩하여 구현하였다. 
+2. 메인 커버이미지 : 가로 너비를 꽉 채우고있는 이 커버이미지에 인스타그램 좋아요 애니메이션을 적용하여 **연속으로 2번 탭**할 경우 북마크에 추가된 상태가 아니라면 이미지 가운데에 하트가 1초간 나타났다 사라지며 북마크에 추가된다. 이기능도 ViewModifier를 사용하여 복잡한 코드를 노출시키지 않았고, 북마크 여부 파라미터와 애니메이션 동작을 위한 로컬변수를 바인딩하여 구현하였다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0580ca01-7981-436e-b90c-24f38ba9fdd6/Untitled.png)
+
+<p align="center">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851377-a31b3139-b879-4c6d-96d8-2f17e0f4ed0c.png" width = "300" height = "500">
+</p>
+
 
 북마크에 추가되어있지 않은 상태에서 연속으로 두번 탭하여 사용할 수 있다. 북마크를 제거할땐 적용되지 않게 하였다. 이유는 북마크 제거인데 하트 아이콘이 뜨는게 어색해서 비활성화 했다.
 
@@ -130,11 +139,12 @@ SearchView는 searchable modifier를 통해 TextField가 Navigation을 가리는
 1. emptyView : 검색된 결과가 없거나, 키워드가 비어있다면 화면 중앙에 돋보기 모양 아이콘과 텍스트로 검색을 유도하는 UI를 구현했다.
 2. searchedMovieListView : 검색된 결과가 있을 경우 나타나며 MovieInfoRow가 리스트의 형태로 나타나며 각 항목을 선택하면 MovieDetailView로 이동한다. 검색에 사용되는 keyword는 타이핑할때마다 검색 API를 호출하는 것을 방지하기 위해 `Debounce`를 1.5초로 두어 검색 후 1.5초후 최종 키워드에 대해서만 검색 API가 동작하게 구현했다. 
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e2a66e9f-d2ba-4b64-bfd7-e1fd72f7f389/Untitled.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b82766f5-0ff9-4ae2-a101-13cd6b59a645/Untitled.png)
+<p align="center">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851397-01327ca2-2ab5-4297-99cb-8dc3dbfb9fb6.png" width = "300" height = "500">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851401-f9a59069-43a8-42ab-a3e3-c1d72b59ac4e.png" width = "300" height = "500">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851402-33d623eb-4aa4-4b20-b724-95dc7a594e31.png" width = "300" height = "500"></p>
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a0ebd418-f38b-4354-88c7-1ed7052f747e/Untitled.png)
 
 ### BookmarkView
 
@@ -149,6 +159,9 @@ UserDefaultsStorage에서 북마크 추가, 제거, 조회, 북마크여부 등�
 1. emptyView : SearchView와 동일하게 조회한 북마크가 없다면 emptyView를 노출시킨다.
 2. bookmarkListView : 조회한 북마크를 리스트 형태로 출력하고 가장 우측에는 북마크를 제거할 수 있는 하트 버튼이 있다. 하트 버튼을 눌러서 북마크 리스트에서 곧바로 제거할 수 있고, SearchView에서 사용하는 MovieInfoRow를 공통 컴포넌트로 분리하여 BookmarkView에서도 사용하게끔 구현하였다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2c9972c0-9575-44a1-8b26-750f30171723/Untitled.png)
+<p align="center">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851449-4a32390d-3d81-492e-9999-37f93f3133f1.png" width = "300" height = "500">
+	<img src = "https://user-images.githubusercontent.com/50567986/219851450-3bcc2f38-b045-4756-9caf-696fdccab41d.png" width = "300" height = "500"></p>
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/48a40961-eff6-48ec-82fe-58d0a7da6238/Untitled.png)
+
+
